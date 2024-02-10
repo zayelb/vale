@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Day Card</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f8a5c2, #ffcccc);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 60px;
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    animation: floatHeart 4s infinite alternate;
+  }
+
+  @keyframes floatHeart {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .heart {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 120px;
+    color: #ff5b86;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  h1 {
+    color: #ff5b86;
+    font-size: 42px;
+    margin-bottom: 40px;
+  }
+
+  button {
+    margin: 30px;
+    padding: 20px 30px;
+    font-size: 24px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    outline: none;
+    background-color: #ff5b86;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    z-index: 1;
+  }
+
+  button:hover {
+    background-color: #ff385f;
+  }
+
+  #yesBtn {
+    right: calc(50% + 20px);
+  }
+
+  #noBtn {
+    left: calc(50% + 20px);
+  }
+
+  #response {
+    margin-top: 40px;
+    font-size: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="heart">&hearts;</div>
+  <h1>Will you be my Valentine?</h1>
+  <button id="yesBtn">Yes</button>
+  <button id="noBtn">No</button>
+</div>
+
+<script>
+  document.getElementById("yesBtn").addEventListener("click", function() {
+    window.location.href = "yes.html";
+  });
+
+  const noButton = document.getElementById("noBtn");
+
+  noButton.addEventListener("mouseover", moveNoButton);
+
+  function moveNoButton() {
+    const buttonRect = noButton.getBoundingClientRect();
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const maxX = windowWidth - buttonRect.width - 475; // Subtract button width and extra padding
+    const maxY = windowHeight - buttonRect.height -250; // Subtract button height and extra padding
+    const newX = Math.max(0, Math.min(Math.random() * maxX, maxX));
+    const newY = Math.max(0, Math.min(Math.random() * maxY, maxY));
+    noButton.style.left = newX + "px";
+    noButton.style.top = newY + "px";
+  }
+</script>
+
+</body>
+</html>
